@@ -32,8 +32,8 @@ const i18n = createI18n({
             setting: 'ការកំណត់',
             history: 'ប្រវត្តិ',
             login:'ចូលប្រព័ន្ធ',
-            blogស:'ប្លុក',
-            careers:'ការងារ'
+            careers:'ការងារ',
+            blogs: 'ប្លុក',
 
         }
     }

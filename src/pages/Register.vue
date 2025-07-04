@@ -10,32 +10,32 @@
             
         <h2 class="text-2xl font-semibold mb-6 text-gray-800">User Information</h2>
 
-        <Form @submit="handleSubmit" class="space-y-4">
+        <Form :validation-schema="validationSchema" @submit="handleSubmit" class="space-y-4">
             <!-- Name Field -->
             <div>
                 <label class="block mb-1 text-sm font-medium text-gray-700">Name</label>
                 <Field name="name" type="text" v-model="form.name"
                     class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Enter your name" required />
-                    <ErrorMessage name="name" />
+                    placeholder="Enter your name" />
+                <ErrorMessage name="name" class="text-red-600 text-sm mt-1" />
             </div>
 
             <!-- Email Field -->
             <div>
                 <label class="block mb-1 text-sm font-medium text-gray-700">Email</label>
-                <Field type="email" name="email" v-model="form.email"
+                <Field name="email" type="email" v-model="form.email"
                     class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter your email" />
-                    <ErrorMessage name="email"/>
+                <ErrorMessage name="email" class="text-red-600 text-sm mt-1" />
             </div>
 
             <!-- Age Field -->
             <div>
                 <label class="block mb-1 text-sm font-medium text-gray-700">Age</label>
-                <Field type="number" name="age" v-model="form.age"
+                <Field name="age" type="number" v-model="form.age"
                     class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter your age" />
-                    <ErrorMessage name="age"/>
+                <ErrorMessage name="age" class="text-red-600 text-sm mt-1" />
             </div>
 
             <!-- Submit Button -->
@@ -67,7 +67,15 @@ export default {
                 name: '',
                 email: '',
                 age: ''
-            }
+            },
+            validationSchema: yup.object(
+                {
+                    name: yup.string().matches(/^[A-Za-z\s]+$/,'Only alphabet and space is accepted')
+                        .min(3, 'Name must be at least 3 characters')
+                        .required('Name is required'),
+                    email: yup.string().email('Invalid email').required('Email is required'),
+                    age: yup.number().min(10, 'Minimum age of 10').max(120, 'Maximum age of 120').required('Age is required')
+                })
         }
     },
     methods: {
