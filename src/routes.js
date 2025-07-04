@@ -10,8 +10,9 @@ import Setting from '@/pages/Setting.vue'
 import Collections from '@/components/Collections.vue'
 import PriceList from '@/components/PriceList.vue'
 import Projects from '@/pages/Projects.vue'
-import Register from '@/pages/Register.vue'
+import Register from '@/pages/RegisterModal.vue'
 import User from '@/pages/User.vue'
+import Upload from '@/pages/Upload.vue' 
 
 const routes = [
     { path: '/', component: Home },
@@ -28,6 +29,7 @@ const routes = [
     { path: '/projects', component : Projects},
     { path: '/register', component : Register},
     { path: '/users', component : User},
+    { path: '/docs', component: Upload},
     {path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
    
 ]
@@ -38,5 +40,10 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 })
+
+router.afterEach(async (to, from, failure) => {
+  if (!failure) setTimeout(() => window.HSStaticMethods.autoInit(), 100);
+});
+
 
 export default router

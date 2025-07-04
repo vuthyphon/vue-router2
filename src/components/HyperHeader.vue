@@ -43,6 +43,9 @@
                         <li>
                             <router-link class="text-gray-500 transition hover:text-gray-500/75" to="/setting"> {{$t('setting')}} </router-link>
                         </li>
+                        <li>
+                            <router-link class="text-gray-500 transition hover:text-gray-500/75" to="/docs"> {{$t('docs')}} </router-link>
+                        </li>
                     </ul>
                 </nav>
 
@@ -57,14 +60,14 @@
                     </div>
                     <div class="sm:flex sm:gap-4">
                         <a class="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
-                            href="#">
+                            href="#" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-scale-animation-modal" data-hs-overlay="#hs-scale-animation-modal">
                             {{$t('login')}}
                         </a>
 
-                        <router-link class="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
-                            to="/register">
+                        <a class="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-scale-animation-modal" data-hs-overlay="#register-modal" 
+                            href="#">
                             {{$t('register')}}
-                        </router-link>
+                        </a>
                     </div>
 
                     
